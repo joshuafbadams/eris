@@ -37,12 +37,9 @@ repo=$GOPATH/src/$base
 
 # If an arg is passed to the script we will assume that only local
 #   tests will be ran.
-if [ $1 ]
-then
-  machine="eris-test-local"
-else
-  machine=$MACHINE_NAME
-fi
+
+machine="$MACHINE_NAME"
+
 
 start=`pwd`
 declare -a checks
@@ -55,7 +52,13 @@ export ERIS_MIGRATE_APPROVE="true"
 # ---------------------------------------------------------------------------
 # Define the tests and passed functions
 
-announce() {
+announceNative() {
+  echo
+  echo "Testing against native docker"
+  echo
+}
+
+announceMachine() {
   echo
   echo "Testing against"
   echo -e "\tMachine name:\t$machine"
@@ -205,27 +208,23 @@ flame_out() {
 # ---------------------------------------------------------------------------
 # Go!
 echo "Hello! The marmots will begin testing now."
-if [[ "$machine" == "eris-test-local" ]]
+if [[ "$DOCKER_MACHINE" = true ]]
 then
-  announce
-else
-  announce
+  announceMachine
   connect
   setup
+else
+  announceNative
 fi
 passed Setup
 
-if [[ $machine == "eris-test-local" ]]
+if [[ -z "$1" ]]
 then
-  if [[ $1 == "local" ]]
-  then
-    packagesToTest
-  else
-    go test ./$1/... && passed $1
-  fi
-else
   packagesToTest
+else
+  go test ./$1/... && passed $1
 fi
+
 test_exit=$?
 
 # ---------------------------------------------------------------------------
