@@ -10,7 +10,6 @@ matrix:
   include:
     #Docker machine job, expect this to pass
     - go: 1.7.3
-        - 
       env:
         - DOCKER_MACHINE=true
       after_script: 
@@ -18,7 +17,7 @@ matrix:
   allow_failures:
     #Native Docker job, expect potential failures as it's still fresh
     - go: 1.7.3
-    
+
 install:
   - brew update
   - brew install jq
