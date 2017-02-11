@@ -18,7 +18,6 @@ environment:
     allow_failures:
       - DOCKER_MACHINE: "false"
         DOCKER_VERSION: 1.12.1
-  matrix:
     - DOCKER_MACHINE: "true"
       MACHINE_NAME: 'eris-test-win-%APPVEYOR_BUILD_ID%'
       DOCKER_VERSION: 1.10.0
