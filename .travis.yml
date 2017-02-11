@@ -5,7 +5,7 @@ language: go
 env:
   global:
     - TEST_ON_MACOSX=true
-    - MACHINE_NAME=eris-test-osx-"$TRAVIS_BUILD_ID"
+    - MACHINE_NAME="eris-test-osx-""$TRAVIS_BUILD_ID"
 matrix:
   include:
     #Docker machine job, expect this to pass
@@ -32,7 +32,7 @@ install:
   - go install ./cmd/eris
 
 script:
-  - tests/test.sh
+  - ./tests/test.sh
 
 notifications:
   email: false

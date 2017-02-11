@@ -103,7 +103,7 @@ function create_machine() {
   if [ "$ci" = true ]
   then
     AWS_SSH_USER=""
-    if [ "$win" = true ] || [ "$osx" = true]
+    if [ "$win" = true ] || [ "$osx" = true ]
     then 
       docker-machine create                                 \
         --driver amazonec2                                  \
