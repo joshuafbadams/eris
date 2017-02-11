@@ -6,7 +6,7 @@ clone_folder: C:\gopath\src\github.com\eris-ltd\eris
 environment:
   global:
     TEST_ON_WINDOWS: "true"
-    DOCKER_MACHINE: "true"
+    
     GOPATH: C:\gopath
     GOBIN: C:\gopath\bin
     CC: gcc.exe
@@ -14,27 +14,32 @@ environment:
     MSYS2_ARCH: x86_64
     MSYS2_BITS: 64
     MSYSTEM: MINGW64
-    MACHINE_NAME: 'eris-test-win-%APPVEYOR_BUILD_ID%'
-    SKIP_PACKAGES: "true" # remove later when stack tests work on windows.
-    DOCKER_VERSION: 1.10.0
-    DOCKER_MACHINE_VERSION: 0.4.1
-    AWS_ACCESS_KEY_ID:
-      secure: qHdpZ2qgqg7LcbD1GJJ5JHPZJ1Bn0dQ8LoXgZpKrXBQ=
-    AWS_SECRET_ACCESS_KEY:
-      secure: SM1ZHeoInEuFq7Crxwsvq+9ukaCpR4lFBoPGRMTUIOOPmzCwOU6nTqO+NFW1DnQO
-    AWS_DEFAULT_REGION: eu-west-1
-    AWS_VPC_ID:
-      secure: Lo717dojMJUNytpQPZWwyw==
-    AWS_SECURITY_GROUP:
-      secure: Jie7WuAzjiHVp7tX8MfaSQ==
+  matrix:
+    - DOCKER_MACHINE: "true"
+      MACHINE_NAME: 'eris-test-win-%APPVEYOR_BUILD_ID%'
+      DOCKER_VERSION: 1.10.0
+      DOCKER_MACHINE_VERSION: 0.4.1
+      AWS_ACCESS_KEY_ID:
+        secure: qHdpZ2qgqg7LcbD1GJJ5JHPZJ1Bn0dQ8LoXgZpKrXBQ=
+      AWS_SECRET_ACCESS_KEY:
+        secure: SM1ZHeoInEuFq7Crxwsvq+9ukaCpR4lFBoPGRMTUIOOPmzCwOU6nTqO+NFW1DnQO
+      AWS_DEFAULT_REGION: eu-west-1
+      AWS_VPC_ID:
+        secure: Lo717dojMJUNytpQPZWwyw==
+      AWS_SECURITY_GROUP:
+        secure: Jie7WuAzjiHVp7tX8MfaSQ==
+    allow_failures:
+      - DOCKER_MACHINE: "false"
+        DOCKER_VERSION: 1.12.1
 
 install:
   - gcc --version
   - choco upgrade golang
   - cinst cygwin
   - cinst jq
-  - cinst docker -version %DOCKER_VERSION%
-  - cinst docker-machine -version %DOCKER_MACHINE_VERSION%
+  - if %DOCKER_MACHINE%="true" cinst docker -version %DOCKER_VERSION%
+  - if %DOCKER_MACHINE%="true" cinst docker-machine -version %DOCKER_MACHINE_VERSION%
+  - if %DOCKER_MACHINE%="false" cinst docker-for-windows -version %DOCKER_VERSION%
 build_script:
 - cmd: >-
 
