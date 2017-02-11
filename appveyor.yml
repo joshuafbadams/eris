@@ -57,4 +57,4 @@ after_test:
 test_script:
 - cmd: >-
 
-    bash c:\gopath\src\github.com\eris-ltd\eris\tests\dm_cleanup.sh
+    bash c:\gopath\src\github.com\eris-ltd\eris\tests\test.sh
