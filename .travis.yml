@@ -19,6 +19,8 @@ matrix:
         - DOCKER_MACHINE=true
       after_script: 
         - tests/dm_cleanup.sh
+    - env:
+        - DOCKER_NATIVE=true
 
 
 install:
