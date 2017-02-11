@@ -27,7 +27,7 @@ install:
   - brew update
   - brew install jq
   - brew install caskroom/cask/brew-cask
-  - test $DOCKER_MACHINE = true && brew install docker docker-machine || brew cask install docker
+  - test $DOCKER_MACHINE -eq true && brew install docker docker-machine || brew cask install docker
   - go install ./cmd/eris
 
 script:
