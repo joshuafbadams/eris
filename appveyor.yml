@@ -28,9 +28,10 @@ environment:
       secure: Lo717dojMJUNytpQPZWwyw==
     AWS_SECURITY_GROUP:
       secure: Jie7WuAzjiHVp7tX8MfaSQ==
+  - DOCKER_VERSION: 1.12.1
   allow_failures:
-    - DOCKER_MACHINE: "false"
-      DOCKER_VERSION: 1.12.1
+    - DOCKER_VERSION: 1.12.1
+
 
 
 install:
