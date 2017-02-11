@@ -38,7 +38,9 @@ install:
   - choco upgrade golang
   - cinst cygwin
   - cinst jq
-  - IF DEFINED %DOCKER_MACHINE% cinst docker -version %DOCKER_VERSION% AND cinst docker-machine -version %DOCKER_MACHINE_VERSION% ELSE cinst docker-for-windows -version %DOCKER_VERSION%
+  - cinst docker -version %DOCKER_VERSION%
+  - cinst docker-machine -version %DOCKER_MACHINE_VERSION% 
+  - cmd: if not "%DOCKER_MACHINE%" == true cinst docker-for-windows -version %DOCKER_VERSION%
 build_script:
 - cmd: >-
 
