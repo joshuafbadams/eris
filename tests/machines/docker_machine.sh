@@ -174,6 +174,7 @@ function start_machine() {
   if [ "$osx" != true ] && [ "$win" != true ]
   then
     #copy in script to machine
+    echo "Got inside start machine"
     docker-machine scp "$script" "$MACHINE_NAME":
     if [ $? -ne 0 ]
     then
