@@ -59,7 +59,7 @@ strt=`pwd`
 echo $strt
 #import docker machine logic
 
-source ./tests/machines/docker_machine.sh
+source ./$repo/tests/machines/docker_machine.sh
 
 # ----------------------------------------------------------------------------
 # Define how tests will run

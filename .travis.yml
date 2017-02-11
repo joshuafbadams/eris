@@ -9,7 +9,7 @@ env:
 matrix:
   include:
     #Docker machine job, expect this to pass
-    - go: 1.6
+    - go: 1.7.3
       before_install:
         - brew update
         - sudo bash -c "curl -sSL https://get.docker.com/builds/Darwin/x86_64/docker-1.10.1 >/usr/local/bin/docker"
@@ -22,7 +22,7 @@ matrix:
         - tests/dm_cleanup.sh
   allow_failures:
     #Native Docker job, expect potential failures as it's still fresh
-    - go: 1.6
+    - go: 1.7.3
       before_install:
         - brew update
         - brew cask install docker
@@ -32,7 +32,7 @@ install:
   - go install ./cmd/eris
 
 script:
-  - test DOCKER_MACHINE != true && tests/test.sh || tests/test.sh machine
+  - tests/test.sh
 
 notifications:
   email: false
