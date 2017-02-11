@@ -12,10 +12,8 @@ matrix:
     - go: 1.7.3
       before_install:
         - brew update
-        - sudo bash -c "curl -sSL https://get.docker.com/builds/Darwin/x86_64/docker-1.10.1 >/usr/local/bin/docker"
-        - sudo chmod +x /usr/local/bin/docker
-        - sudo bash -c "curl -sSL https://github.com/docker/machine/releases/download/v0.6.0/docker-machine-darwin-x86_64 >/usr/local/bin/docker-machine"
-        - sudo chmod +x /usr/local/bin/docker-machine
+        - brew install caskroom/cask/brew-cask
+        - brew install docker docker-machine
       env:
         - DOCKER_MACHINE=true
       after_script: 
@@ -25,8 +23,8 @@ matrix:
     - go: 1.7.3
       before_install:
         - brew update
-        - brew install docker
-
+        - brew install caskroom/cask/brew-cask
+        - brew cask install docker
 install:
   - brew install jq
   - go install ./cmd/eris
