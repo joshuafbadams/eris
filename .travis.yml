@@ -2,8 +2,6 @@ os: osx
 
 language: go
 
-go: 1.7.3
-
 env:
   global:
     - TEST_ON_MACOSX=true
@@ -15,11 +13,14 @@ matrix:
         - DOCKER_NATIVE=true
   include:
     #Docker machine job, expect this to pass
-    - env:
+    - go: 1.7.3
+      env:
         - DOCKER_MACHINE=true
       after_script: 
         - tests/dm_cleanup.sh
-    - env:
+        #Native Docker job, expect potential failures as it's still fresh
+    - go: 1.7.3
+      env:
         - DOCKER_NATIVE=true
 
 
