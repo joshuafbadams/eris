@@ -14,15 +14,20 @@ matrix:
         - DOCKER_MACHINE=true
       after_script: 
         - tests/dm_cleanup.sh
+    - go: 1.7.3
+      env:
+        - DOCKER_MACHINE=false
   allow_failures:
     #Native Docker job, expect potential failures as it's still fresh
     - go: 1.7.3
+      env:
+        - DOCKER_MACHINE=false
 
 install:
   - brew update
   - brew install jq
   - brew install caskroom/cask/brew-cask
-  - test DOCKER_MACHINE == true && brew install docker docker-machine || brew cask install docker
+  - test $DOCKER_MACHINE = true && brew install docker docker-machine || brew cask install docker
   - go install ./cmd/eris
 
 script:
