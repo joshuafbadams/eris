@@ -10,10 +10,7 @@ matrix:
   include:
     #Docker machine job, expect this to pass
     - go: 1.7.3
-      before_install:
-        - brew update
-        - brew install caskroom/cask/brew-cask
-        - brew install docker docker-machine
+        - 
       env:
         - DOCKER_MACHINE=true
       after_script: 
@@ -21,12 +18,12 @@ matrix:
   allow_failures:
     #Native Docker job, expect potential failures as it's still fresh
     - go: 1.7.3
-      before_install:
-        - brew update
-        - brew install caskroom/cask/brew-cask
-        - brew cask install docker
+    
 install:
+  - brew update
   - brew install jq
+  - brew install caskroom/cask/brew-cask
+  - test DOCKER_MACHINE == true && brew install docker docker-machine || brew cask install docker
   - go install ./cmd/eris
 
 script:
