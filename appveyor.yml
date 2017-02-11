@@ -28,7 +28,7 @@ environment:
     AWS_SECURITY_GROUP:
       secure: Jie7WuAzjiHVp7tX8MfaSQ==
   - allow_failures:
-    DOCKER_VERSION: 1.12.1
+    DOCKER_NATIVE: "true"
 
 
 
@@ -41,7 +41,7 @@ install:
       If ($env:DOCKER_MACHINE -eq "true") {
         cinst docker --version $env:DOCKER_VERSION; cinst docker-machine --version $env:DOCKER_MACHINE_VERSION
       } Else {
-        cinst docker-for-windows --version $env:DOCKER_VERSION
+        cinst docker-for-windows
       }
 
 build_script:
