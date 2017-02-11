@@ -6,7 +6,6 @@ clone_folder: C:\gopath\src\github.com\eris-ltd\eris
 environment:
   global:
     TEST_ON_WINDOWS: "true"
-    
     GOPATH: C:\gopath
     GOBIN: C:\gopath\bin
     CC: gcc.exe
