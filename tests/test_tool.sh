@@ -122,15 +122,15 @@ packagesToTest() {
     if [ $? -ne 0 ]; then return 1; fi
     go test ./loaders/... && passed Loaders
     if [ $? -ne 0 ]; then return 1; fi
-    go test ./perform/... && passed Perform
+    go test ./perform/... -v -timeout 20m && passed Perform
     if [ $? -ne 0 ]; then return 1; fi
     go test ./data/... && passed Data
     if [ $? -ne 0 ]; then return 1; fi
     go test ./files/... && passed Files
     if [ $? -ne 0 ]; then return 1; fi
-    go test ./services/... && passed Services
+    go test ./services/... -v -timeout 20m && passed Services
     if [ $? -ne 0 ]; then return 1; fi
-    go test ./chains/... && passed Chains
+    go test ./chains/... -v -timeout 20m && passed Chains
     if [ $? -ne 0 ]; then return 1; fi
     go test ./keys/... && passed Keys
     if [ $? -ne 0 ]; then return 1; fi
