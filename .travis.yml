@@ -6,6 +6,7 @@ env:
   global:
     - TEST_ON_MACOSX=true
     - MACHINE_NAME="eris-test-osx-$TRAVIS_BUILD_ID"
+env:
 matrix:
   allow_failures:
     #Native Docker job, expect potential failures as it's still fresh
