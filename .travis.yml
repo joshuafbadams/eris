@@ -25,7 +25,7 @@ matrix:
     - go: 1.7.3
       before_install:
         - brew update
-        - brew cask install docker
+        - brew install docker
 
 install:
   - brew install jq
