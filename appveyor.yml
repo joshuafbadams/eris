@@ -30,7 +30,7 @@ environment:
       secure: Jie7WuAzjiHVp7tX8MfaSQ==
   - DOCKER_VERSION: 1.12.1
   - allow_failures:
-      - DOCKER_VERSION: 1.12.1
+    DOCKER_VERSION: 1.12.1
 
 
 
